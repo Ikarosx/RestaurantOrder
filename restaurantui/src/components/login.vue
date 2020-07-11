@@ -107,6 +107,7 @@ export default {
           if (result.success) {
             this.$snackbar.success(result.message);
             window.localStorage.setItem("user", qs.stringify(result.data.user));
+            this.$root.$data.username = result.data.user.username;
             this.$router.push("menu");
           } else {
             this.$snackbar.error(result.message);
