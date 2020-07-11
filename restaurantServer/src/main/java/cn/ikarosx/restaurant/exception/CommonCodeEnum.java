@@ -29,7 +29,7 @@ public enum CommonCodeEnum implements ResponseResult {
   private boolean success;
   private int code;
   private String message;
-  private Map<String, Object> data = new HashMap<>();
+  private Map<String, Object> data;
 
   CommonCodeEnum(boolean success, int code, String message) {
     this.success = success;
@@ -57,9 +57,18 @@ public enum CommonCodeEnum implements ResponseResult {
     return data;
   }
 
+  public ResponseResult clearData() {
+    data = null;
+    return this;
+  }
+
   @Override
-  public ResponseResult addData(String key, Object value) {
-    data.put(key, value);
+  public ResponseResult addData(Object... objects) {
+    data = new HashMap<>();
+    assert (objects.length & 1) == 0;
+    for (int i = 0; i < objects.length; i++) {
+      data.put((String) objects[i], objects[++i]);
+    }
     return this;
   }
 }

@@ -41,7 +41,7 @@ public class ExceptionCatch {
     log.error("catch exception : {}", e.getMessage());
     // DAO访问数据为空
     // TODO
-    return CommonCodeEnum.SUCCESS;
+    return CommonCodeEnum.SUCCESS.clearData();
   }
 
   @ExceptionHandler(Exception.class)

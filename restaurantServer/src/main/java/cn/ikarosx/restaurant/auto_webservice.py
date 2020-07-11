@@ -165,19 +165,19 @@ public class {Name}ServiceImpl implements {Name}Service {{
   @Override
   public ResponseResult insert{Name}({Name} {name}) {{
     {name}Repository.save({name});
-    return CommonCodeEnum.SUCCESS;
+    return CommonCodeEnum.SUCCESS.clearData();
   }}
 
   @Override
   public ResponseResult delete{Name}ById({pkType} id) {{
     {name}Repository.deleteById(id);
-    return CommonCodeEnum.SUCCESS;
+    return CommonCodeEnum.SUCCESS.clearData();
   }}
 
   @Override
   public ResponseResult update{Name}({Name} {name}) {{
     {name}Repository.save({name});
-    return CommonCodeEnum.SUCCESS;
+    return CommonCodeEnum.SUCCESS.clearData();
   }}
 
   @Override

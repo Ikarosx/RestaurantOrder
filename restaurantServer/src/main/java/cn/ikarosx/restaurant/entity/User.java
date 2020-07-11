@@ -10,7 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author Ikarosx
@@ -31,7 +30,7 @@ public class User {
 
   @NotEmpty(groups = {Insert.class})
   private String password;
-  
+
   @CreatedDate private LocalDateTime createTime;
   @LastModifiedDate private LocalDateTime updateTime;
 }
