@@ -1,0 +1,11 @@
+server:
+    port: 80
+spring:
+    datasource:
+        username: restaurant
+        password: restaurant
+        url: jdbc:mysql://ikarosx.cn:3307/restaurant?useSSL=false&CharacterEncoding=UTF-8
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        generate-ddl: true
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
