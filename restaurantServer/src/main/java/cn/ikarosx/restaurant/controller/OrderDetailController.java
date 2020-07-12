@@ -20,5 +20,5 @@ public interface OrderDetailController {
   ResponseResult listOrderDetailsByPage(
       int page, int size, OrderDetailQueryParam orderDetailQueryParam);
 
-  ResponseResult listAllOrderDetails();
+  ResponseResult listAllOrderDetails(OrderDetailQueryParam orderDetailQueryParam);
 }

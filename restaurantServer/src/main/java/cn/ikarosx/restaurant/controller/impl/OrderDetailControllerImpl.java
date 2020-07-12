@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2020/07/07 22:43
  */
 @RestController
-@RequestMapping("orderDetails")
+@RequestMapping("order/detail")
 public class OrderDetailControllerImpl implements OrderDetailController {
   @Autowired private OrderDetailService orderDetailService;
 
@@ -59,8 +59,8 @@ public class OrderDetailControllerImpl implements OrderDetailController {
 
   @Override
   @GetMapping
-  public ResponseResult listAllOrderDetails() {
-    return orderDetailService.listAllOrderDetails();
+  public ResponseResult listAllOrderDetails(OrderDetailQueryParam orderDetailQueryParam) {
+    return orderDetailService.listAllOrderDetails(orderDetailQueryParam);
   }
 }
     

@@ -58,12 +58,8 @@ import * as loginApi from "@/base/api/login";
 // );
 // 响应拦截
 axios.interceptors.response.use((data) => {
-  console.log("data=");
-  console.log(data);
   if (data && data.data) {
-    console.log(data.data.code);
     if (data.data.code == "11002") {
-      console.log("重新登录")
       window.localStorage.removeItem('user');
       router.push('/login')
     } else if (data.data.code && data.data.code == "401") {

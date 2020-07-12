@@ -18,6 +18,6 @@ public interface OrderDetailService {
 
   ResponseResult listOrderDetailsByPage(int page, int size,  OrderDetailQueryParam orderDetailQueryParam);
 
-  ResponseResult listAllOrderDetails();
+  ResponseResult listAllOrderDetails(OrderDetailQueryParam orderDetailQueryParam);
 }
     

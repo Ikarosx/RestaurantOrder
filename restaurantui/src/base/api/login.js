@@ -1,6 +1,7 @@
 import http from "./public";
 import qs from "qs"
-var apiUrl = 'http://127.0.0.1'
+import { systemConfig }  from '@/base/config/system'
+var apiUrl = systemConfig.apiUrl
 
 export const login = params => {
   return http.requestPostForm(apiUrl + "/user/login", qs.stringify(params));

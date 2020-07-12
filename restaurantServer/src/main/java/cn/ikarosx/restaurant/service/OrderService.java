@@ -19,7 +19,7 @@ public interface OrderService {
 
   ResponseResult listOrdersByPage(int page, int size, OrderQueryParam orderQueryParam);
 
-  ResponseResult listAllOrders();
+  ResponseResult listAllOrders(OrderQueryParam orderQueryParam);
   
   ResponseResult payOrder(String orderId);
 }

@@ -7,4 +7,6 @@ import lombok.Data;
  * @date 2020/7/7 22:46
  */
 @Data
-public class OrderDetailQueryParam {}
+public class OrderDetailQueryParam {
+    private String orderId;
+}

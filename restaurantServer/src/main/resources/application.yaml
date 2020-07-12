@@ -6,6 +6,9 @@ spring:
         password: restaurant
         url: jdbc:mysql://ikarosx.cn:3307/restaurant?useSSL=false&CharacterEncoding=UTF-8
         driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            max-lifetime: 1800000
+            validation-timeout: 9000
     jpa:
         generate-ddl: true
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

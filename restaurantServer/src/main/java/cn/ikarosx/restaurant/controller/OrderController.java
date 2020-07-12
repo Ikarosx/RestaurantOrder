@@ -22,5 +22,5 @@ public interface OrderController {
 
   ResponseResult listOrdersByPage(int page, int size, OrderQueryParam orderQueryParam);
 
-  ResponseResult listAllOrders();
+  ResponseResult listAllOrders(OrderQueryParam orderQueryParam);
 }

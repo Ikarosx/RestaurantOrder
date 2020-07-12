@@ -1,50 +1,49 @@
 <template>
-  <v-content>
-    <v-card class="mx-auto" max-width="400">
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594401167982&di=4b3dee67f4ac516d2195e155bbad135a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201412%2F16%2F20141216232600_fLztK.jpeg"
-      ></v-img>
-      <v-card-text>
-        <v-row>
-          <v-col cols="12">
-            <v-form ref="form">
-              <v-row>
-                <v-text-field
-                  v-model="user.username"
-                  :rules="rules.username"
-                  label="账号"
-                  required
-                  prepend-icon="mdi-account"
-                ></v-text-field>
-              </v-row>
-              <v-row>
-                <v-text-field
-                  v-model="user.password"
-                  :rules="rules.password"
-                  label="密码"
-                  required
-                  prepend-icon="mdi-lock"
-                  type="password"
-                ></v-text-field>
-              </v-row>
-            </v-form>
-          </v-col>
-        </v-row>
-      </v-card-text>
+  <v-card class="mx-auto" max-width="400">
+    <v-img
+      class="white--text align-end"
+      height="200px"
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594401167982&di=4b3dee67f4ac516d2195e155bbad135a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201412%2F16%2F20141216232600_fLztK.jpeg"
+    ></v-img>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12">
+          <v-form ref="form">
+            <v-row>
+              <v-text-field
+                v-model="user.username"
+                :rules="rules.username"
+                label="账号"
+                required
+                prepend-icon="mdi-account"
+              ></v-text-field>
+            </v-row>
+            <v-row>
+              <v-text-field
+                v-model="user.password"
+                :rules="rules.password"
+                label="密码"
+                required
+                prepend-icon="mdi-lock"
+                type="password"
+              ></v-text-field>
+            </v-row>
+          </v-form>
+        </v-col>
+      </v-row>
+    </v-card-text>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="#B39DDB" @click="register" :disabled="button.register">注册</v-btn>
-        <v-btn color="primary" @click="login" :disabled="button.login">登陆</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-content>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="#B39DDB" @click="register" :disabled="button.register">注册</v-btn>
+      <v-btn color="primary" @click="login" :disabled="button.login">登陆</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 <script>
 import * as loginApi from "@/base/api/login";
 import qs from "qs";
+import md5 from "js-md5";
 export default {
   data() {
     return {
@@ -68,6 +67,9 @@ export default {
       }
     };
   },
+  mounted() {
+    this.$root.$data.username = undefined;
+  },
   methods: {
     validate() {
       return this.$refs.form.validate();
@@ -76,6 +78,7 @@ export default {
       if (!this.validate()) {
         return;
       }
+      this.user.password = md5(this.user.password);
       this.button.register = true;
       loginApi
         .register(this.user)
@@ -90,8 +93,10 @@ export default {
             this.$snackbar.error(result.message);
           }
           this.button.register = false;
+          this.user.password = "";
         })
         .catch(error => {
+          this.user.password = "";
           this.button.register = false;
           this.$snackbar.error(error.message);
         });
@@ -100,6 +105,7 @@ export default {
       if (!this.validate()) {
         return;
       }
+      this.user.password = md5(this.user.password);
       this.button.login = true;
       loginApi
         .login(this.user)
@@ -108,14 +114,17 @@ export default {
             this.$snackbar.success(result.message);
             window.localStorage.setItem("user", qs.stringify(result.data.user));
             this.$root.$data.username = result.data.user.username;
+            this.$root.$data.userId = result.data.user.id;
             this.$router.push("menu");
           } else {
             this.$snackbar.error(result.message);
           }
-          this.button.login = true;
+          this.user.password = "";
+          this.button.login = false;
         })
         .catch(error => {
-          this.button.login = true;
+          this.user.password = "";
+          this.button.login = false;
           this.$snackbar.error(error.message);
         });
     }

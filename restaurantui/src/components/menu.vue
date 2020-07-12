@@ -49,6 +49,8 @@
 <script>
 import * as menuApi from "@/base/api/menu.js";
 import querystring from "querystring";
+import { systemConfig }  from '@/base/config/system'
+var apiUrl = systemConfig.apiUrl
 export default {
   data() {
     return {
@@ -60,8 +62,6 @@ export default {
         headers: [
           {
             text: "ID",
-            align: "center",
-            sortable: false,
             value: "id"
           },
           {
@@ -131,13 +131,16 @@ export default {
       var order = {};
       order.userId = querystring.parse(window.localStorage.getItem("user")).id;
       order.sum = this.countSum;
-      order.orderDetails = this.table.desserts;
+      console.log(this.table.desserts);
+      order.orderDetails = this.table.desserts.filter((item) => item.num != 0);
+      console.log(order.orderDetails);
       for (const key in order.orderDetails) {
         order.orderDetails[key].menuId = order.orderDetails[key].id;
+        order.orderDetails[key].menuName = order.orderDetails[key].name;
         order.orderDetails[key].sum =
           order.orderDetails[key].num * order.orderDetails[key].price;
       }
-      this.menuNumReset();
+      
       menuApi
         .generateOrder(order)
         .then(result => {
@@ -146,12 +149,13 @@ export default {
             var orderId = result.data.orderId;
             this.payDialog.orderId = orderId;
             this.payDialog.payUrl =
-              "http://127.0.0.1/order/" + orderId + "/pay";
+              apiUrl+"/order/" + orderId + "/pay";
             this.$snackbar.success(result.message);
             this.payDialog.show = true;
           } else {
             this.$snackbar.error(result.message);
           }
+          this.menuNumReset();
         })
         .catch(error => {
           this.$snackbar.error(error.message);

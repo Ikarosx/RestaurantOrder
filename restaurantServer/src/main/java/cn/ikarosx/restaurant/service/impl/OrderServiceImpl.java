@@ -77,16 +77,25 @@ public class OrderServiceImpl implements OrderService {
     // 分页
     Pageable pageable = PageRequest.of(page - 1, size);
     Page<Order> orderPage = orderRepository.findAll(example, pageable);
-    return CommonCodeEnum.SUCCESS
-        .addData("list", orderPage.getContent())
-        .addData("total", orderPage.getTotalElements())
-        .addData("totalPage", orderPage.getTotalPages());
+    return CommonCodeEnum.SUCCESS.addData(
+        "list",
+        orderPage.getContent(),
+        "total",
+        orderPage.getTotalElements(),
+        "totalPage",
+        orderPage.getTotalPages());
   }
 
   @Override
-  public ResponseResult listAllOrders() {
-    List<Order> list = orderRepository.findAll();
-    return CommonCodeEnum.SUCCESS.addData("list", list).addData("total", list.size());
+  public ResponseResult listAllOrders(OrderQueryParam orderQueryParam) {
+    Order order = new Order();
+    BeanUtils.copyProperties(orderQueryParam, order);
+    // 筛选
+    ExampleMatcher matcher =
+        ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+    Example<Order> example = Example.of(order, matcher);
+    List<Order> list = orderRepository.findAll(example);
+    return CommonCodeEnum.SUCCESS.addData("list", list, "total", list.size());
   }
 
   @Override

@@ -1,15 +1,15 @@
 <template>
   <!-- App.vue -->
   <v-app>
-    <v-app-bar app color="rgb(255, 246, 211)">
+    <v-app-bar app color="rgb(255, 246, 211)" v-if="$root.$data.username != undefined">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Is点餐系统</v-toolbar-title>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn text>点餐</v-btn>
-        <v-btn text>历史订单</v-btn>
+        <v-btn text to="/menu">点餐</v-btn>
+        <v-btn text to="/order/history">历史订单</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
-      <p class="mb-0" v-show="$root.$data.username != ''">
+      <p class="mb-0">
         欢迎您，{{$root.$data.username}}
         <a @click="logout">注销</a>
       </p>
@@ -18,7 +18,7 @@
     <v-content>
       <!-- Provides the application the proper gutter -->
       <v-container fill-height>
-        <v-row align="center" justify="center" class="lighten-5">
+        <v-row align="center" justify="center" class="lighten-5 content">
           <router-view></router-view>
         </v-row>
         <!-- If using vue-router -->
@@ -41,6 +41,9 @@
   background-color: cornsilk;
 }
 
+.content .v-content {
+  padding: 0 !important;
+}
 #nav {
   padding: 30px;
 }
@@ -63,12 +66,11 @@ export default {
       username: ""
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     logout() {
       window.localStorage.removeItem("user");
-      this.$root.$data.username = "";
-
       loginApi
         .logout()
         .then(result => {

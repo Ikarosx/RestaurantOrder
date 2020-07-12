@@ -1,6 +1,7 @@
 import http from "./public";
 import qs from "qs";
-var apiUrl = "http://127.0.0.1";
+import { systemConfig }  from '@/base/config/system'
+var apiUrl = systemConfig.apiUrl
 
 export const listAllMenuType = () => {
   return http.requestQuickGet(apiUrl + "/menu/type/all");
@@ -22,4 +23,12 @@ export const generateOrder = (order) => {
 
 export const getOrderById = (orderId) => {
   return http.requestQuickGet(apiUrl + "/order/" + orderId);
+};
+
+export const listAllOrderByUserId = (userId) => {
+  return http.requestQuickGet(apiUrl + "/order?userId=" + userId);
+};
+
+export const listOrderDetailsByOrderId = (orderId) => {
+  return http.requestQuickGet(apiUrl + "/order/detail?orderId=" + orderId);
 };

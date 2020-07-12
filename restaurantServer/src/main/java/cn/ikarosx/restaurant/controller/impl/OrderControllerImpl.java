@@ -66,7 +66,7 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @GetMapping
-  public ResponseResult listAllOrders() {
-    return orderService.listAllOrders();
+  public ResponseResult listAllOrders(OrderQueryParam orderQueryParam) {
+    return orderService.listAllOrders(orderQueryParam);
   }
 }

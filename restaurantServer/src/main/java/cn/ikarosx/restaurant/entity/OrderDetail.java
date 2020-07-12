@@ -25,6 +25,7 @@ public class OrderDetail {
 
   private String orderId;
   private String menuId;
+  private String menuName;
   private Double price;
   private Integer num;
   private Double sum;

@@ -70,8 +70,14 @@ public class OrderDetailServiceImpl implements OrderDetailService {
   }
 
   @Override
-  public ResponseResult listAllOrderDetails() {
-    List<OrderDetail> list = orderDetailRepository.findAll();
-    return CommonCodeEnum.SUCCESS.addData("list", list).addData("total", list.size());
+  public ResponseResult listAllOrderDetails(OrderDetailQueryParam orderDetailQueryParam) {
+    OrderDetail orderDetail = new OrderDetail();
+    BeanUtils.copyProperties(orderDetailQueryParam, orderDetail);
+    // 筛选
+    ExampleMatcher matcher =
+        ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+    Example<OrderDetail> example = Example.of(orderDetail, matcher);
+    List<OrderDetail> list = orderDetailRepository.findAll(example);
+    return CommonCodeEnum.SUCCESS.addData("list", list, "total", list.size());
   }
 }
