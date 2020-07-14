@@ -37,4 +37,12 @@ public class SessionUtils {
   public static User getUser() {
     return (User) getAttribute("user");
   }
+
+  public static String getId() {
+    return getUser().getId();
+  }
+
+  public static String getUserName() {
+    return getUser().getUsername();
+  }
 }

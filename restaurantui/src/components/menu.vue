@@ -75,7 +75,7 @@ export default {
           { text: "操作", value: "actions", align: "center" }
         ],
         desserts: [],
-        perPage: 10,
+        perPage: 999,
         loading: true
       },
       menuType: []

@@ -31,8 +31,8 @@ public class AdminAspect {
     Signature signature = joinPoint.getSignature();
     MethodSignature methodSignature = (MethodSignature) signature;
     Method method = methodSignature.getMethod();
-    String id = SessionUtils.getUser().getId();
-    if (id == null || !StringUtils.equals(id, "0")) {
+    String username = SessionUtils.getUser().getUsername();
+    if (username == null || !StringUtils.equals(username, "Peggy")) {
       log.error("此方法需要管理员权限：" + method.getName());
       ExceptionCast.cast(CommonCodeEnum.PERMISSION_DENY);
     }

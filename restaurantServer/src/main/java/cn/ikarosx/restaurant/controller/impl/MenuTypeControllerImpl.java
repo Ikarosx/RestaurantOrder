@@ -1,5 +1,6 @@
 package cn.ikarosx.restaurant.controller.impl;
 
+import cn.ikarosx.restaurant.aspect.NeedAdmin;
 import cn.ikarosx.restaurant.controller.MenuTypeController;
 import cn.ikarosx.restaurant.entity.MenuType;
 import cn.ikarosx.restaurant.entity.param.MenuTypeQueryParam;
@@ -19,18 +20,21 @@ public class MenuTypeControllerImpl implements MenuTypeController {
 
   @Override
   @PostMapping
+  @NeedAdmin
   public ResponseResult insertMenuType(@Validated @RequestBody MenuType menuType) {
     return menuTypeService.insertMenuType(menuType);
   }
 
   @Override
   @DeleteMapping("/{id}")
+  @NeedAdmin
   public ResponseResult deleteMenuTypeById(@PathVariable String id) {
     return menuTypeService.deleteMenuTypeById(id);
   }
 
   @Override
   @PutMapping("/{id}")
+  @NeedAdmin
   public ResponseResult updateMenuType(
       @PathVariable String id, @Validated @RequestBody MenuType menuType) {
     return menuTypeService.updateMenuType(menuType);
@@ -38,12 +42,14 @@ public class MenuTypeControllerImpl implements MenuTypeController {
 
   @Override
   @GetMapping("/{id}")
+  @NeedAdmin
   public ResponseResult getMenuTypeById(@PathVariable String id) {
     return menuTypeService.getMenuTypeById(id);
   }
 
   @Override
   @GetMapping("/{page}/{size}")
+  @NeedAdmin
   public ResponseResult listMenuTypesByPage(
       @PathVariable int page, @PathVariable int size, MenuTypeQueryParam menuTypeQueryParam) {
     if (page < 1) {

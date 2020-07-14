@@ -10,6 +10,7 @@ import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ExceptionCast;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 import cn.ikarosx.restaurant.service.OrderService;
+import cn.ikarosx.restaurant.util.SessionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -46,20 +47,27 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public ResponseResult deleteOrderById(String id) {
-    orderRepository.deleteById(id);
+    Order order = new Order();
+    order.setUserId(SessionUtils.getId());
+    order.setId(id);
+    orderRepository.delete(order);
     return CommonCodeEnum.SUCCESS.clearData();
   }
 
   @Override
   public ResponseResult updateOrder(Order order) {
+    order.setId(SessionUtils.getId());
     orderRepository.save(order);
     return CommonCodeEnum.SUCCESS.clearData();
   }
 
   @Override
   public ResponseResult getOrderById(String id) {
-    Optional<Order> optional = orderRepository.findById(id);
-    Order order = optional.orElse(null);
+    Order order = new Order();
+    order.setId(id);
+    order.setUserId(SessionUtils.getId());
+    Optional<Order> optional = orderRepository.findOne(Example.of(order));
+    order = optional.orElse(null);
     if (order == null) {
       ExceptionCast.cast(CommonCodeEnum.DATA_NOT_FOUND);
     }

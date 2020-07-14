@@ -1,5 +1,6 @@
 package cn.ikarosx.restaurant.controller.impl;
 
+import cn.ikarosx.restaurant.aspect.NeedAdmin;
 import cn.ikarosx.restaurant.controller.MenuController;
 import cn.ikarosx.restaurant.entity.Menu;
 import cn.ikarosx.restaurant.entity.param.MenuQueryParam;
@@ -19,30 +20,35 @@ public class MenuControllerImpl implements MenuController {
 
   @Override
   @PostMapping
+  @NeedAdmin
   public ResponseResult insertMenu(@Validated @RequestBody Menu menu) {
     return menuService.insertMenu(menu);
   }
 
   @Override
   @DeleteMapping("/{id}")
+  @NeedAdmin
   public ResponseResult deleteMenuById(@PathVariable String id) {
     return menuService.deleteMenuById(id);
   }
 
   @Override
   @PutMapping("/{id}")
+  @NeedAdmin
   public ResponseResult updateMenu(@PathVariable String id, @Validated @RequestBody Menu menu) {
     return menuService.updateMenu(menu);
   }
 
   @Override
   @GetMapping("/{id}")
+  @NeedAdmin
   public ResponseResult getMenuById(@PathVariable String id) {
     return menuService.getMenuById(id);
   }
 
   @Override
   @GetMapping("/{page}/{size}")
+  @NeedAdmin
   public ResponseResult listMenusByPage(
       @PathVariable int page, @PathVariable int size, MenuQueryParam menuQueryParam) {
     if (page < 1) {

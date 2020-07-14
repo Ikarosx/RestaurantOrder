@@ -1,5 +1,7 @@
 package cn.ikarosx.restaurant.controller.impl;
 
+import cn.ikarosx.restaurant.aspect.AdminAccess;
+import cn.ikarosx.restaurant.aspect.IsOwner;
 import cn.ikarosx.restaurant.controller.OrderController;
 import cn.ikarosx.restaurant.entity.Order;
 import cn.ikarosx.restaurant.entity.controller.PostOrder;
@@ -20,6 +22,7 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @PostMapping
+  @IsOwner(clazz = PostOrder.class, name = "UserId")
   public ResponseResult insertOrder(@Validated @RequestBody PostOrder order) {
     return orderService.insertOrder(order);
   }
@@ -50,6 +53,8 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @GetMapping("/{page}/{size}")
+  @AdminAccess
+  @IsOwner(position = 2, clazz = OrderQueryParam.class, name = "UserId")
   public ResponseResult listOrdersByPage(
       @PathVariable int page, @PathVariable int size, OrderQueryParam orderQueryParam) {
     if (page < 1) {
@@ -66,6 +71,8 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @GetMapping
+  @IsOwner(position = 0, clazz = OrderQueryParam.class, name = "UserId")
+  @AdminAccess
   public ResponseResult listAllOrders(OrderQueryParam orderQueryParam) {
     return orderService.listAllOrders(orderQueryParam);
   }

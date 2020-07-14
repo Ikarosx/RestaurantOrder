@@ -5,8 +5,9 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Is点餐系统</v-toolbar-title>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn text to="/menu">点餐</v-btn>
+        <v-btn text to="/menu" >点餐</v-btn>
         <v-btn text to="/order/history">历史订单</v-btn>
+        <v-btn text to="/admin/menu/add" v-if="$root.$data.username == 'Peggy'">添加菜单</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <p class="mb-0">
