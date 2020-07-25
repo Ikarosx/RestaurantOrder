@@ -1,5 +1,5 @@
-FROM ikarosx.cn:15000/jdk1.8
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM openjdk:8-jdk-alpine
 ARG JAR_FILE
-ADD ${JAR_FILE} /app.jar
+ADD target/${JAR_FILE} /app.jar
 EXPOSE 80
+ENTRYPOINT ["java", "-jar", "/app.jar"]

@@ -15,7 +15,6 @@
     <properties>
         <!--docker私服地址-->
         <docker.repostory>ikarosx.cn:15000</docker.repostory>
-        <docker.host>http://ikarosx.cn:2375</docker.host>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
     </properties>
     <dependencies>
@@ -61,7 +60,8 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>app</finalName>
+        <!-- 貌似是不能带-横线 -->
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -93,7 +93,7 @@
                     <tag>${project.version}</tag>
                     <buildArgs>
                         <!--提供参数向Dockerfile传递-->
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
             </plugin>
