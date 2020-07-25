@@ -4,7 +4,7 @@ import cn.ikarosx.restaurant.dao.OrderDetailRepository;
 import cn.ikarosx.restaurant.dao.OrderRepository;
 import cn.ikarosx.restaurant.entity.Order;
 import cn.ikarosx.restaurant.entity.OrderDetail;
-import cn.ikarosx.restaurant.entity.controller.PostOrder;
+import cn.ikarosx.restaurant.entity.query.PostOrder;
 import cn.ikarosx.restaurant.entity.query.OrderQueryParam;
 import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ExceptionCast;

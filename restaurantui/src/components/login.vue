@@ -43,7 +43,6 @@
 <script>
 import * as loginApi from "@/base/api/login";
 import qs from "qs";
-import md5 from "js-md5";
 export default {
   data() {
     return {
@@ -78,7 +77,6 @@ export default {
       if (!this.validate()) {
         return;
       }
-      this.user.password = md5(this.user.password);
       this.button.register = true;
       loginApi
         .register(this.user)
@@ -105,7 +103,6 @@ export default {
       if (!this.validate()) {
         return;
       }
-      this.user.password = md5(this.user.password);
       this.button.login = true;
       loginApi
         .login(this.user)

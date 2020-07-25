@@ -1,4 +1,4 @@
-package cn.ikarosx.restaurant.entity.controller;
+package cn.ikarosx.restaurant.entity.query;
 
 import cn.ikarosx.restaurant.entity.OrderDetail;
 import lombok.Data;

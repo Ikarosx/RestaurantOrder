@@ -4,7 +4,7 @@ import cn.ikarosx.restaurant.aspect.IsOwner;
 import cn.ikarosx.restaurant.aspect.PreAuthorize;
 import cn.ikarosx.restaurant.controller.OrderController;
 import cn.ikarosx.restaurant.entity.Order;
-import cn.ikarosx.restaurant.entity.controller.PostOrder;
+import cn.ikarosx.restaurant.entity.query.PostOrder;
 import cn.ikarosx.restaurant.entity.query.OrderQueryParam;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 import cn.ikarosx.restaurant.service.OrderService;

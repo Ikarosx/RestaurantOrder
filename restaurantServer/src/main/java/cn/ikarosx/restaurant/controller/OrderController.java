@@ -1,7 +1,7 @@
 package cn.ikarosx.restaurant.controller;
 
 import cn.ikarosx.restaurant.entity.Order;
-import cn.ikarosx.restaurant.entity.controller.PostOrder;
+import cn.ikarosx.restaurant.entity.query.PostOrder;
 import cn.ikarosx.restaurant.entity.query.OrderQueryParam;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 /**

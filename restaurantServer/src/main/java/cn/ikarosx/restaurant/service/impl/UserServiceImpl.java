@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
       // 如果不是管理员，强制用户类型为普通用户
       user.setType(0);
     }
+    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
     userRepository.save(user);
     return CommonCodeEnum.SUCCESS.clearData();
   }
@@ -43,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseResult updateUser(User user) {
+    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
     userRepository.save(user);
     return CommonCodeEnum.SUCCESS.clearData();
   }
@@ -91,7 +94,11 @@ public class UserServiceImpl implements UserService {
     Optional<User> optional = userRepository.findOne(example);
     user =
         optional
-            .map(u -> u.getPassword().equals(password) ? u : null)
+            .map(
+                u ->
+                    u.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes()))
+                        ? u
+                        : null)
             .orElseThrow(() -> new CustomException(CommonCodeEnum.USERNAME_OR_PASSWORD_ERROR));
     SessionUtils.setAttribute("user", user);
     user.setPassword(null);
