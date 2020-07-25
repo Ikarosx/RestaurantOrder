@@ -2,9 +2,9 @@ server:
     port: 80
 spring:
     datasource:
-        username: restaurant
-        password: restaurant
-        url: jdbc:mysql://ikarosx.cn:3307/restaurant?useSSL=false&CharacterEncoding=UTF-8
+        username: username
+        password: password
+        url: jdbc:mysql://127.0.0.1:3306/restaurant?useSSL=false&CharacterEncoding=UTF-8
         driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
             max-lifetime: 1800000

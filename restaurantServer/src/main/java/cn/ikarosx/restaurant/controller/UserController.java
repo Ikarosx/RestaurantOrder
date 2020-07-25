@@ -1,7 +1,7 @@
 package cn.ikarosx.restaurant.controller;
 
 import cn.ikarosx.restaurant.entity.User;
-import cn.ikarosx.restaurant.entity.param.UserQueryParam;
+import cn.ikarosx.restaurant.entity.query.UserQueryParam;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 /**
  * @author Ikaros

@@ -1,4 +1,4 @@
-package cn.ikarosx.restaurant.entity.param;
+package cn.ikarosx.restaurant.entity.query;
 
 import lombok.Data;
 

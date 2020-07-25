@@ -2,7 +2,7 @@ package cn.ikarosx.restaurant.service.impl;
 
 import cn.ikarosx.restaurant.dao.OrderDetailRepository;
 import cn.ikarosx.restaurant.entity.OrderDetail;
-import cn.ikarosx.restaurant.entity.param.OrderDetailQueryParam;
+import cn.ikarosx.restaurant.entity.query.OrderDetailQueryParam;
 import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ExceptionCast;
 import cn.ikarosx.restaurant.exception.ResponseResult;

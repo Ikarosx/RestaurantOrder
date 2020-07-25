@@ -2,7 +2,7 @@ package cn.ikarosx.restaurant.service.impl;
 
 import cn.ikarosx.restaurant.dao.UserRepository;
 import cn.ikarosx.restaurant.entity.User;
-import cn.ikarosx.restaurant.entity.param.UserQueryParam;
+import cn.ikarosx.restaurant.entity.query.UserQueryParam;
 import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.CustomException;
 import cn.ikarosx.restaurant.exception.ExceptionCast;
@@ -27,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseResult insertUser(User user) {
+    if (!SessionUtils.isAdmin()) {
+      // 如果不是管理员，强制用户类型为普通用户
+      user.setType(0);
+    }
     userRepository.save(user);
     return CommonCodeEnum.SUCCESS.clearData();
   }

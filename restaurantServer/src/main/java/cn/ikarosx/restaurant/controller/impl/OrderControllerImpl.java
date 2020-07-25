@@ -1,11 +1,11 @@
 package cn.ikarosx.restaurant.controller.impl;
 
-import cn.ikarosx.restaurant.aspect.AdminAccess;
 import cn.ikarosx.restaurant.aspect.IsOwner;
+import cn.ikarosx.restaurant.aspect.PreAuthorize;
 import cn.ikarosx.restaurant.controller.OrderController;
 import cn.ikarosx.restaurant.entity.Order;
 import cn.ikarosx.restaurant.entity.controller.PostOrder;
-import cn.ikarosx.restaurant.entity.param.OrderQueryParam;
+import cn.ikarosx.restaurant.entity.query.OrderQueryParam;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 import cn.ikarosx.restaurant.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,25 +35,27 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @DeleteMapping("/{id}")
+  @PreAuthorize("@securityServiceImpl.orderIdAuth(#id)")
   public ResponseResult deleteOrderById(@PathVariable String id) {
     return orderService.deleteOrderById(id);
   }
 
   @Override
   @PutMapping("/{id}")
+  @PreAuthorize("@securityServiceImpl.orderIdAuth(#id)")
   public ResponseResult updateOrder(@PathVariable String id, @Validated @RequestBody Order order) {
     return orderService.updateOrder(order);
   }
 
   @Override
   @GetMapping("/{id}")
+  @PreAuthorize("@securityServiceImpl.orderIdAuth(#id)")
   public ResponseResult getOrderById(@PathVariable String id) {
     return orderService.getOrderById(id);
   }
 
   @Override
   @GetMapping("/{page}/{size}")
-  @AdminAccess
   @IsOwner(position = 2, clazz = OrderQueryParam.class, name = "UserId")
   public ResponseResult listOrdersByPage(
       @PathVariable int page, @PathVariable int size, OrderQueryParam orderQueryParam) {
@@ -71,8 +73,7 @@ public class OrderControllerImpl implements OrderController {
 
   @Override
   @GetMapping
-  @IsOwner(position = 0, clazz = OrderQueryParam.class, name = "UserId")
-  @AdminAccess
+  @IsOwner(clazz = OrderQueryParam.class, name = "UserId")
   public ResponseResult listAllOrders(OrderQueryParam orderQueryParam) {
     return orderService.listAllOrders(orderQueryParam);
   }

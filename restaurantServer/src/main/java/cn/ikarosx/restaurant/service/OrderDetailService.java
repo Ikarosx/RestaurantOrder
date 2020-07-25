@@ -1,7 +1,7 @@
 
     package cn.ikarosx.restaurant.service;
     import cn.ikarosx.restaurant.entity.OrderDetail;
-    import cn.ikarosx.restaurant.entity.param.OrderDetailQueryParam;
+    import cn.ikarosx.restaurant.entity.query.OrderDetailQueryParam;
     import cn.ikarosx.restaurant.exception.ResponseResult;
 /**
  * @author Ikaros

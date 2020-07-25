@@ -3,7 +3,7 @@ package cn.ikarosx.restaurant.controller.impl;
 import cn.ikarosx.restaurant.aspect.NeedAdmin;
 import cn.ikarosx.restaurant.controller.MenuTypeController;
 import cn.ikarosx.restaurant.entity.MenuType;
-import cn.ikarosx.restaurant.entity.param.MenuTypeQueryParam;
+import cn.ikarosx.restaurant.entity.query.MenuTypeQueryParam;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 import cn.ikarosx.restaurant.service.MenuTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,8 @@ import cn.ikarosx.restaurant.aspect.NeedAdmin;
 import cn.ikarosx.restaurant.controller.UserController;
 import cn.ikarosx.restaurant.entity.User;
 import cn.ikarosx.restaurant.entity.jpa.Insert;
-import cn.ikarosx.restaurant.entity.param.UserQueryParam;
+import cn.ikarosx.restaurant.entity.jpa.Update;
+import cn.ikarosx.restaurant.entity.query.UserQueryParam;
 import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ResponseResult;
 import cn.ikarosx.restaurant.service.UserService;
@@ -45,12 +46,14 @@ public class UserControllerImpl implements UserController {
 
   @Override
   @PostMapping
+  @ApiOperation("增加用户，默认是普通用户")
   public ResponseResult insertUser(@Validated(Insert.class) @RequestBody User user) {
     return userService.insertUser(user);
   }
 
   @Override
   @DeleteMapping("/{id}")
+  @ApiOperation("删除用户")
   @IsOwner
   public ResponseResult deleteUserById(@PathVariable String id) {
     return userService.deleteUserById(id);
@@ -58,8 +61,10 @@ public class UserControllerImpl implements UserController {
 
   @Override
   @PutMapping("/{id}")
+  @ApiOperation("更新用户")
   @IsOwner
-  public ResponseResult updateUser(@PathVariable String id, @Validated @RequestBody User user) {
+  public ResponseResult updateUser(
+      @PathVariable String id, @Validated(value = Update.class) @RequestBody User user) {
     user.setId(id);
     return userService.updateUser(user);
   }

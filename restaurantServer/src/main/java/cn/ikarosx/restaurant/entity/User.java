@@ -1,15 +1,20 @@
 package cn.ikarosx.restaurant.entity;
 
 import cn.ikarosx.restaurant.entity.jpa.Insert;
+import cn.ikarosx.restaurant.entity.jpa.Update;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * @author Ikarosx
@@ -23,6 +28,7 @@ import java.time.LocalDateTime;
 public class User {
   @Id
   @GeneratedValue(generator = "uuid")
+  @NotNull(groups = Update.class)
   private String id;
 
   @NotEmpty(groups = {Insert.class})
@@ -31,6 +37,11 @@ public class User {
   @NotEmpty(groups = {Insert.class})
   private String password;
 
-  @CreatedDate private LocalDateTime createTime;
-  @LastModifiedDate private LocalDateTime updateTime;
+  @Min(0)
+  @Max(1)
+  @Value("0")
+  private int type;
+
+  @CreatedDate private Date createTime;
+  @LastModifiedDate private Date updateTime;
 }

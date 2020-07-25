@@ -2,7 +2,7 @@ package cn.ikarosx.restaurant.service.impl;
 
 import cn.ikarosx.restaurant.dao.MenuTypeRepository;
 import cn.ikarosx.restaurant.entity.MenuType;
-import cn.ikarosx.restaurant.entity.param.MenuTypeQueryParam;
+import cn.ikarosx.restaurant.entity.query.MenuTypeQueryParam;
 import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ExceptionCast;
 import cn.ikarosx.restaurant.exception.ResponseResult;

@@ -4,7 +4,6 @@ import cn.ikarosx.restaurant.exception.CommonCodeEnum;
 import cn.ikarosx.restaurant.exception.ExceptionCast;
 import cn.ikarosx.restaurant.util.SessionUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
@@ -31,8 +30,7 @@ public class AdminAspect {
     Signature signature = joinPoint.getSignature();
     MethodSignature methodSignature = (MethodSignature) signature;
     Method method = methodSignature.getMethod();
-    String username = SessionUtils.getUser().getUsername();
-    if (username == null || !StringUtils.equals(username, "Peggy")) {
+    if (!SessionUtils.isAdmin()) {
       log.error("此方法需要管理员权限：" + method.getName());
       ExceptionCast.cast(CommonCodeEnum.PERMISSION_DENY);
     }
