@@ -3,7 +3,7 @@
     <v-img
       class="white--text align-end"
       height="200px"
-      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594401167982&di=4b3dee67f4ac516d2195e155bbad135a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201412%2F16%2F20141216232600_fLztK.jpeg"
+      src="https://ikaros-picture.oss-cn-shenzhen.aliyuncs.com/typorarestaurant_bg.jpg"
     ></v-img>
     <v-card-text>
       <v-row>

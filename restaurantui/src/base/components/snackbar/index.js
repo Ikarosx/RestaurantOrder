@@ -1,8 +1,9 @@
 import Snackbar from "./Snackbar.vue";
-
+import vuetify from "@/plugins/vuetify"; 
 import Vue from "vue";
 
 const v = new Vue({
+  vuetify,
   render(createElement) {
     return createElement(Snackbar);
   }

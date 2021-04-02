@@ -3,9 +3,7 @@ import App from "./App.vue";
 import router from "@/base/config/router";
 import vuetify from "@/plugins/vuetify"; // path to vuetify export
 import qs from "qs";
-// 引入snackbar
-import snackbar from "@/base/components/snackbar";
-Vue.prototype.$snackbar = snackbar;
+
 Vue.config.productionTip = false;
 var store = {
   debug: true,
@@ -26,6 +24,9 @@ if (user != null) {
   username = user.username;
   userId = user.id;
 }
+// 引入snackbar
+import snackbar from "@/base/components/snackbar";
+Vue.prototype.$snackbar = snackbar;
 new Vue({
   router,
   vuetify,

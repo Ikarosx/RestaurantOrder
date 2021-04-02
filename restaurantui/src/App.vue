@@ -1,7 +1,7 @@
 <template>
   <!-- App.vue -->
   <v-app>
-    <v-app-bar app color="rgb(255, 246, 211)" v-if="$root.$data.username != undefined">
+    <v-app-bar app color="rgb(255, 246, 211)" v-show="$root.$data.username != undefined">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Is点餐系统</v-toolbar-title>
       <v-toolbar-items class="hidden-xs-only">
