@@ -12,7 +12,7 @@ module.exports = {
     externals: {
       vue: "Vue",
       "vue-router": "VueRouter",
-      vuetify: "Vuetify",
+      // vuetify: "Vuetify",
       axios: "axios",
     },
   },
