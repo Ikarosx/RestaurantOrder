@@ -101,6 +101,8 @@ export default {
         .then(result => {
           if (result.success) {
             this.$snackbar.success(result.message);
+            this.menuType.name = ""
+            this.listAllMenuType()
           } else {
             this.$snackbar.error(result.message);
           }

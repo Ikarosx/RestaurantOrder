@@ -61,7 +61,7 @@ export default {
         },
         headers: [
           {
-            text: "ID",
+            text: "订单号",
             value: "id"
           },
           { text: "总价", value: "sum" },

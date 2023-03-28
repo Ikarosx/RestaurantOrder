@@ -39,8 +39,7 @@ public class User {
 
   @Min(0)
   @Max(1)
-  @Value("0")
-  private int type;
+  private Integer type;
 
   @CreatedDate private Date createTime;
   @LastModifiedDate private Date updateTime;
