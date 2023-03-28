@@ -3,6 +3,9 @@ server:
     servlet:
         session:
             timeout: 30m
+            cookie:
+                secure: true
+
 spring:
     profiles:
         active: template

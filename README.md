@@ -1,15 +1,39 @@
 # RestaurantOrder
 基于SpringBoot和Vue的餐馆点餐系统，单机版
 
-## 后端
+## QuickStart
+### 后端
+
+1. 预先准备mysql，数据库名称为restaurant
+- restaurant.sql
+
+2. 修改配置文件数据库账号密码
+`src/main/resources/application-template.yaml`
+
+3. 运行RestaurantApplication.java
+
+### 前端
+
+```shell
+# npm/yarn安装依赖
+npm install
+# 运行
+npm run serve
+# 编译
+npm run build
+```
+### 访问
+http://localhost:8080/
+
+默认账号密码
+1. 管理员 Peggy : 123456
+2. 普通用户 Ikaros : 123456
+
+管理员多了可以添加菜单的功能
+
+## 功能说明-后端
 ### 接口文档
 采用Swagger2,启动后访问127.0.0.1/swagger-ui.html,默认端口80
-
-### 启动
-
-预先准备mysql
-
-运行RestaurantApplication.java
 
 ### 数据库
 
@@ -59,20 +83,11 @@ docker run --name restaurant -p 8888:80 -d --restart=always 镜像名称
 
 
 
-##  前端
+## 功能说明-前端
 
 前端不是很熟悉，这里就简单介绍一下
 
-###  运行
 
-```shell
-# 安装依赖
-npm install
-# 运行
-npm run serve
-# 编译
-npm run build
-```
 
 ### 优化
 
