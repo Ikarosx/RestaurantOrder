@@ -57,7 +57,7 @@ export default {
       rules: {
         username: [
           v => !!v || "请输入用户名",
-          v => v.length <= 10 || "用户名过长"
+          v => v.length <= 20 || "用户名过长"
         ],
         password: [
           v => !!v || "请输入密码",

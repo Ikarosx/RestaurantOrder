@@ -42,7 +42,8 @@ public class SessionUtils {
     return getUser().getId();
   }
   public static boolean isAdmin(){
-    return getUser().getType() == 1;
+    User user = getUser();
+    return user != null && user.getType() == 1;
   }
 
   public static String getUserName() {
