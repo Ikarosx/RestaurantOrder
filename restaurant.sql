@@ -168,7 +168,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('8a80cb817340b167017340b807110001', 'e10adc3949ba59abbe56e057f20f883e', '2020-07-12 01:51:09.072', '2020-07-12 01:51:09.072', 'Peggy', 0);
+INSERT INTO `user` VALUES ('8a80cb817340b167017340b807110001', 'e10adc3949ba59abbe56e057f20f883e', '2020-07-12 01:51:09.072', '2020-07-12 01:51:09.072', 'Peggy', 1);
 INSERT INTO `user` VALUES ('8a80cb81734861ab017348818a7d0005', 'e10adc3949ba59abbe56e057f20f883e', '2020-07-13 14:08:35.960', '2020-07-13 14:08:35.960', 'Ikarosx', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
