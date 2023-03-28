@@ -61,10 +61,6 @@ export default {
       table: {
         headers: [
           {
-            text: "ID",
-            value: "id"
-          },
-          {
             text: "名称",
             value: "name"
           },
