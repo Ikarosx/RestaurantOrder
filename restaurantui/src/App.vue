@@ -16,7 +16,7 @@
       </p>
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
-    <v-content>
+    <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fill-height>
         <v-row align="center" justify="center" class="lighten-5 content">
@@ -24,7 +24,7 @@
         </v-row>
         <!-- If using vue-router -->
       </v-container>
-    </v-content>
+    </v-main>
 
     <v-footer app>
       <!-- -->
@@ -42,7 +42,7 @@
   background-color: cornsilk;
 }
 
-.content .v-content {
+.content .v-main {
   padding: 0 !important;
 }
 #nav {

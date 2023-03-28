@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-data-table
       :headers="table.headers"
       :items="table.desserts"
@@ -44,7 +44,7 @@
         <v-card-text>{{payDialog.payUrl}}</v-card-text>
       </v-card>
     </v-dialog>
-  </v-content>
+  </v-main>
 </template>
 <script>
 import * as menuApi from "@/base/api/menu.js";

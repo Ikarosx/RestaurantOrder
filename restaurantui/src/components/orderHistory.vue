@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <!-- @item-expanded="o => listOrderDetailsByOrderId(o.item.id)" -->
     <v-data-table
       :headers="table.headers"
@@ -28,7 +28,7 @@
         </td>
       </template>
     </v-data-table>
-  </v-content>
+  </v-main>
 </template>
 <script>
 import * as menuApi from "@/base/api/menu.js";
