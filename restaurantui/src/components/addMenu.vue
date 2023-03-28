@@ -117,7 +117,6 @@ export default {
         .then(result => {
           if (result.success) {
             this.menuTypes = result.data.list;
-            this.listAllMenuType();
           } else {
             this.$snackbar.error(result.message);
           }
